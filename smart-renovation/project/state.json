@@ -1,0 +1,310 @@
+{
+  "schema": 1,
+  "project": {
+    "name": "Smart Renovation — моя квартира",
+    "country": null,
+    "city": null,
+    "created": "2026-11-04"
+  },
+  "current_stage": 1,
+  "stages": [
+    {
+      "id": 1,
+      "slug": "survey",
+      "title": "Сбор исходных данных и обследование квартиры",
+      "depends_on": [],
+      "status": "planned",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "slug": "design",
+      "title": "Анализ планировки и дизайн-проект",
+      "depends_on": [
+        1
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "slug": "engineering-design",
+      "title": "Инженерные проекты",
+      "depends_on": [
+        2
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "slug": "demolition",
+      "title": "Демонтаж",
+      "depends_on": [
+        3
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "slug": "partitions",
+      "title": "Возведение перегородок",
+      "depends_on": [
+        4
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "slug": "rough-in",
+      "title": "Монтаж инженерных коммуникаций (трассы, закладные)",
+      "depends_on": [
+        5
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "slug": "electrical",
+      "title": "Электромонтаж (черновой)",
+      "depends_on": [
+        6
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "slug": "plumbing",
+      "title": "Сантехнические работы (черновые)",
+      "depends_on": [
+        6
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "slug": "hvac",
+      "title": "Отопление, вентиляция, кондиционирование (черновые)",
+      "depends_on": [
+        6
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 10,
+      "slug": "insulation",
+      "title": "Шумоизоляция и теплоизоляция",
+      "depends_on": [
+        7,
+        8,
+        9
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "slug": "screed",
+      "title": "Стяжка и выравнивание полов",
+      "depends_on": [
+        10,
+        12
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 12,
+      "slug": "plaster",
+      "title": "Штукатурка и выравнивание стен",
+      "depends_on": [
+        10
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 13,
+      "slug": "waterproofing",
+      "title": "Гидроизоляция",
+      "depends_on": [
+        11,
+        12
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 14,
+      "slug": "ceilings",
+      "title": "Монтаж потолков",
+      "depends_on": [
+        12
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 15,
+      "slug": "tiling",
+      "title": "Укладка плитки и керамогранита",
+      "depends_on": [
+        13
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 16,
+      "slug": "putty",
+      "title": "Шпаклёвка и подготовка стен",
+      "depends_on": [
+        14
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 17,
+      "slug": "painting",
+      "title": "Покраска и декоративная отделка",
+      "depends_on": [
+        16
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 18,
+      "slug": "flooring",
+      "title": "Укладка напольных покрытий",
+      "depends_on": [
+        11,
+        17
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 19,
+      "slug": "doors",
+      "title": "Монтаж дверей",
+      "depends_on": [
+        17
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 20,
+      "slug": "lighting-fittings",
+      "title": "Монтаж освещения и электрофурнитуры",
+      "depends_on": [
+        17
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 21,
+      "slug": "sanitary",
+      "title": "Установка сантехники",
+      "depends_on": [
+        15,
+        17
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 22,
+      "slug": "furniture",
+      "title": "Монтаж мебели и систем хранения",
+      "depends_on": [
+        18,
+        19,
+        20
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 23,
+      "slug": "appliances",
+      "title": "Установка техники",
+      "depends_on": [
+        21,
+        22
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    },
+    {
+      "id": 24,
+      "slug": "final-acceptance",
+      "title": "Финальная приёмка",
+      "depends_on": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "status": "not_started",
+      "accepted_at": null,
+      "checklist": null,
+      "notes": ""
+    }
+  ]
+}

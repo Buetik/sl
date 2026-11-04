@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "tasks": [
+    {
+      "id": "T-001",
+      "stage": 1,
+      "title": "Заполнить анкету inputs/questionnaire.md (12 вопросов первичного обследования)",
+      "status": "todo",
+      "depends_on": [],
+      "est_hours": 1,
+      "who": "self",
+      "hold_point": false
+    },
+    {
+      "id": "T-002",
+      "stage": 1,
+      "title": "Загрузить план БТИ/техпаспорт и фото всех помещений в inputs/",
+      "status": "todo",
+      "depends_on": [],
+      "est_hours": 1,
+      "who": "self",
+      "hold_point": false
+    },
+    {
+      "id": "T-003",
+      "stage": 1,
+      "title": "Выполнить замеры по листу замеров (выдаётся после анкеты)",
+      "status": "todo",
+      "depends_on": [
+        "T-001"
+      ],
+      "est_hours": 4,
+      "who": "self",
+      "hold_point": false
+    },
+    {
+      "id": "T-004",
+      "stage": 1,
+      "title": "Совместное обследование агентами и технический паспорт исходного состояния",
+      "status": "todo",
+      "depends_on": [
+        "T-001",
+        "T-002",
+        "T-003"
+      ],
+      "est_hours": 1,
+      "who": "self",
+      "hold_point": true
+    }
+  ]
+}
