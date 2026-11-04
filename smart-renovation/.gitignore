@@ -1,2 +1,12 @@
 __pycache__/
 *.tmp
+
+# Личные документы и фото — только локально (репозиторий публичный)
+inputs/**/*.pdf
+inputs/**/*.jpg
+inputs/**/*.jpeg
+inputs/**/*.png
+inputs/**/*.heic
+inputs/**/*.webp
+inputs/**/*.doc*
+inputs/**/*.xls*

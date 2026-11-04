@@ -2,9 +2,11 @@
   "schema": 1,
   "project": {
     "name": "Smart Renovation — моя квартира",
-    "country": null,
-    "city": null,
-    "created": "2026-11-04"
+    "country": "Россия",
+    "city": "Санкт-Петербург",
+    "created": "2026-11-04",
+    "building": "новостройка 2026, кирпич/панели, 4 этажа",
+    "floor": 1
   },
   "current_stage": 1,
   "stages": [
@@ -13,10 +15,10 @@
       "slug": "survey",
       "title": "Сбор исходных данных и обследование квартиры",
       "depends_on": [],
-      "status": "planned",
+      "status": "in_progress",
       "accepted_at": null,
       "checklist": null,
-      "notes": ""
+      "notes": "[2026-11-04] Блок A получен, план загружен (локально). Ждём блоки B–D."
     },
     {
       "id": 2,
