@@ -423,12 +423,13 @@ def calc_unit_price(price, qty_per_pack):
 
 
 _ALLOWED_FUNCS = {"ceil": math.ceil, "floor": math.floor, "round": round, "sqrt": math.sqrt,
-                  "min": min, "max": max, "abs": abs, "pi": math.pi}
+                  "min": min, "max": max, "abs": abs, "pi": math.pi,
+                  "lg": math.log10, "ln": math.log, "exp": math.exp}
 
 
 def calc_expr(expr: str):
     """Безопасное вычисление арифметической формулы (без eval): числа, + - * / // % **, скобки,
-    функции ceil, floor, round, sqrt, min, max, abs и константа pi."""
+    функции ceil, floor, round, sqrt, min, max, abs, lg (log10), ln, exp и константа pi."""
     import ast
     import operator as op
     bin_ops = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul, ast.Div: op.truediv,
@@ -651,7 +652,7 @@ def build_parser() -> argparse.ArgumentParser:
     sf.add_argument("--shower-slope-m", type=float, required=True, help="трап → дальняя точка душа, м")
     sf.add_argument("--shower-slope-pct", type=float, required=True)
     sf.add_argument("--adjacent-floor-mm", type=float, default=0.0, help="чистовой пол смежного помещения над плитой, мм")
-    ex = cs.add_parser("expr", help="любая формула (десятичная точка): + - * / ** (), ceil floor round sqrt min max abs pi")
+    ex = cs.add_parser("expr", help="любая формула (десятичная точка): + - * / ** (), ceil floor round sqrt min max abs lg ln exp pi")
     ex.add_argument("--expr", required=True, help='напр. "ceil(64*0.7*150/1000*10)/10"')
     pw = cs.add_parser("power", help="суммарная мощность и расчётный ток")
     pw.add_argument("--loads", required=True, help='имя:Вт через запятую, напр. "варочная:7000,духовка:3500"')

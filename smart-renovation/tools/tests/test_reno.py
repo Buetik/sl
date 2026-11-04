@@ -97,6 +97,9 @@ class TestCalculators(unittest.TestCase):
     def test_expr_safe(self):
         self.assertEqual(reno.calc_expr("2*25*16*0.0175/2.5")["value"], 5.6)
         self.assertEqual(reno.calc_expr("ceil(10.2)")["value"], 11)
+        # акустика: закон массы и сложение уровней
+        self.assertEqual(reno.calc_expr("lg(1000)")["value"], 3.0)
+        self.assertAlmostEqual(reno.calc_expr("10*lg(10**(40/10)+10**(40/10))")["value"], 43.0103, places=3)
         for bad in ("__import__('os')", "open('x')", "a+1", "(1).__class__", "2**1000"):
             with self.assertRaises(ValueError):
                 reno.calc_expr(bad)
