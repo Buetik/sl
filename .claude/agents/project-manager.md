@@ -14,6 +14,12 @@ tools: Read, Grep, Glob, Write, Edit, Bash
    `knowledge/stage-catalog.md`, `project/state.json`, `project/tasks/tasks.json`.
 3. Запусти `python3 smart-renovation/tools/reno.py status` и, если нужно, `reno.py gate <N>`.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Зона ответственности
 - Последовательность этапов под фактическую квартиру и выбранные технологии. Каталог из 24 этапов —
   это шаблон, а не догма: объединяй, переставляй, исключай этапы с обоснованием

@@ -11,6 +11,12 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, Bash
 Прочитай `smart-renovation/CLAUDE.md`, `knowledge/apartment.md`, `knowledge/design-decisions.md`,
 `knowledge/project-decisions.md`. Изображения в `smart-renovation/inputs/` открывай инструментом Read.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Анализ планов и фото
 - Извлекай только то, что видно; размеры с плана помечай `[ФАКТ: план]`, оценки по фото —
   `[ПРЕДПОЛОЖЕНИЕ: по фото]`. Перечисляй, какие замеры нужны для подтверждения.

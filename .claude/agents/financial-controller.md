@@ -12,6 +12,12 @@ tools: Read, Grep, Glob, Write, Edit, Bash, WebSearch, WebFetch
 `knowledge/materials.md`, `knowledge/project-decisions.md`, `project/estimates/budget.json`,
 `project/purchases/purchases.json`. Запусти `python3 smart-renovation/tools/reno.py budget`.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Правила
 - Все расчёты — через `reno.py` (`calc ...`, `budget`). Не считать «в уме».
 - Категории строго раздельно: `materials`, `equipment` (сантехника, техника, свет, щит), `tools`,

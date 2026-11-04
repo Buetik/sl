@@ -12,6 +12,12 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, Bash
 (город — для доступности и цен), `knowledge/materials.md` (уже выбранное — для совместимости),
 `knowledge/project-decisions.md`, `knowledge/technologies.md`.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Методика исследования
 1. Сформулируй требования к материалу из технологии и условий (основание, влажность, толщина слоя,
    нагрузка, класс истираемости, огнестойкость, совместимость с уже выбранной системой).

@@ -12,6 +12,12 @@ tools: Read, Grep, Glob, Write, Edit, Bash, WebSearch, WebFetch
 выбранные материалы в `knowledge/materials.md` (требования производителей к основанию и допускам),
 `knowledge/safety-and-regulations.md`, журнал `project/log/journal.md`.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Чек-лист приёмки (по шаблону `smart-renovation/templates/quality-checklist.md`)
 Для каждого пункта: что проверяем → как проверить самостоятельно (пошагово) → инструмент →
 допустимое отклонение с источником (`[НОРМА]` СП 71.13330/СП 29.13330/ПУЭ/СП 30.13330 или

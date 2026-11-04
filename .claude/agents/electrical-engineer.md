@@ -12,6 +12,12 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, Bash
 `knowledge/engineering.md`, `knowledge/design-decisions.md`, `knowledge/project-decisions.md`,
 `knowledge/safety-and-regulations.md`.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Нормативная база (Россия; для другой страны — найти аналоги и отметить)
 ПУЭ (7-е изд.), СП 256.1325800 «Электроустановки жилых и общественных зданий», серия ГОСТ Р 50571
 (МЭК 60364), ГОСТ IEC 61008/61009 (УЗО/АВДТ) `[НОРМА]`. Конкретные пункты указывать только при

@@ -11,6 +11,12 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch
 Прочитай `smart-renovation/CLAUDE.md`, `knowledge/apartment.md`, `knowledge/technologies.md`,
 `knowledge/project-decisions.md`, `research/innovations/` (что уже исследовано — не повторять).
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Что искать (под текущий этап)
 Решения, которые: сокращают время, упрощают самостоятельный монтаж, снижают вероятность ошибки,
 повышают качество, увеличивают срок службы. Примеры направлений: системы маяков и выравнивания

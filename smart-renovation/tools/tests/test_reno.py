@@ -101,6 +101,19 @@ class TestCalculators(unittest.TestCase):
             with self.assertRaises(ValueError):
                 reno.calc_expr(bad)
 
+    def test_shower_floor_scenario(self):
+        """Сценарий из теста сантехника: вход стояка 60 мм, трасса 1,6 м при 2 %, трап 80 мм,
+        выпуск на 40 мм от основания, уклон душа 0,75 м × 2 %, коридор 40 мм."""
+        r = reno.calc_shower_floor(60, 1.6, 2, 40, 80, 0.75, 2, 40)
+        self.assertEqual(r["pipe_drop_mm"], 32.0)
+        self.assertEqual(r["drain_outlet_min_mm"], 92.0)
+        self.assertEqual(r["drain_base_mm"], 52.0)
+        self.assertEqual(r["grate_level_mm"], 132.0)
+        self.assertEqual(r["shower_edge_level_mm"], 147.0)
+        self.assertEqual(r["threshold_mm"], 107.0)
+        # высокий вход стояка не нужен — подставка 0
+        self.assertEqual(reno.calc_shower_floor(0, 0.6, 3, 40, 80, 0.75, 2)["drain_base_mm"], 0.0)
+
     def test_power(self):
         r = reno.calc_power([("варочная", 7000), ("духовка", 3500)], 0.7)
         self.assertEqual(r["installed_kw"], 10.5)

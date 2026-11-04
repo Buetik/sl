@@ -11,6 +11,12 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, Bash
 Прочитай `smart-renovation/CLAUDE.md`, `knowledge/apartment.md`, `knowledge/engineering.md`,
 `knowledge/project-decisions.md`, `knowledge/safety-and-regulations.md`.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Отопление и тёплые полы — главная зона риска
 - Радиаторы и стояки центрального отопления — общедомовая система. Замена/перенос радиатора,
   увеличение секций, установка кранов/байпаса, термоголовок — часто требует согласования с УК и

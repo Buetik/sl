@@ -470,6 +470,37 @@ def calc_power(loads, demand_factor=1.0, voltage=230.0):
             "design_current_a": round(design / voltage, 2), "loads": [{"name": n, "w": w} for n, w in loads]}
 
 
+def calc_shower_floor(inlet_mm, route_m, pipe_slope_pct, outlet_offset_mm, drain_height_mm,
+                      shower_slope_m, shower_slope_pct, adjacent_floor_mm=0.0):
+    """Отметки пола душа без поддона, мм над плитой перекрытия санузла.
+
+    inlet_mm          — низ свободного входа крестовины стояка над плитой (замер);
+    route_m           — длина трассы отвода от трапа до стояка по трубе;
+    pipe_slope_pct    — уклон отвода (норматив/практика — указать источник);
+    outlet_offset_mm  — от основания трапа до низа его выпуска (паспорт трапа);
+    drain_height_mm   — от основания трапа до верха решётки, минимальная (паспорт трапа);
+    shower_slope_m    — длина уклона от трапа до самой дальней точки зоны душа;
+    shower_slope_pct  — уклон пола душа к трапу;
+    adjacent_floor_mm — отметка чистового пола смежного помещения (коридора) над той же плитой.
+    Модель упрощённая (низ трубы = лоток, без учёта толщины стенки) — результат проверять по месту.
+    """
+    pipe_drop = route_m * 1000 * pipe_slope_pct / 100.0
+    outlet_min = inlet_mm + pipe_drop                      # минимальная отметка низа выпуска трапа
+    base = max(0.0, outlet_min - outlet_offset_mm)          # подставка под трап
+    grate = base + drain_height_mm                          # отметка решётки = чистовой пол у трапа
+    shower_edge = grate + shower_slope_m * 1000 * shower_slope_pct / 100.0
+    threshold = shower_edge - adjacent_floor_mm
+    notes = []
+    if base > 0:
+        notes.append(f"трап нужно поднять на {base:.0f} мм — поднимается весь пол санузла")
+    if threshold > 0:
+        notes.append(f"порог в смежное помещение ≈ {threshold:.0f} мм (сухая зона санузла не ниже края душа)")
+    notes.append("углублять трап в плиту перекрытия нельзя; итог проверить по месту и по паспорту трапа")
+    return {"pipe_drop_mm": round(pipe_drop, 1), "drain_outlet_min_mm": round(outlet_min, 1),
+            "drain_base_mm": round(base, 1), "grate_level_mm": round(grate, 1),
+            "shower_edge_level_mm": round(shower_edge, 1), "threshold_mm": round(threshold, 1), "notes": notes}
+
+
 def parse_loads(s: str):
     out = []
     for part in s.split(","):
@@ -519,6 +550,9 @@ def cmd_calc(args) -> int:
         r = calc_voltage_drop(args.length, args.current, args.section, args.voltage, args.material, args.cos_phi)
     elif k == "unit-price":
         r = calc_unit_price(args.price, args.qty_per_pack)
+    elif k == "shower-floor":
+        r = calc_shower_floor(args.inlet_mm, args.route_m, args.pipe_slope_pct, args.outlet_offset_mm,
+                              args.drain_height_mm, args.shower_slope_m, args.shower_slope_pct, args.adjacent_floor_mm)
     elif k == "expr":
         r = calc_expr(args.expr)
     elif k == "power":
@@ -608,6 +642,15 @@ def build_parser() -> argparse.ArgumentParser:
     ro.add_argument("--width", type=float, required=True)
     ro.add_argument("--height", type=float, required=True)
     ro.add_argument("--openings", help="проёмы в метрах через запятую, напр. 0.9x2.05,1.5x1.4")
+    sf = cs.add_parser("shower-floor", help="отметки пола душа без поддона и порог")
+    sf.add_argument("--inlet-mm", type=float, required=True, help="низ входа крестовины над плитой, мм (замер)")
+    sf.add_argument("--route-m", type=float, required=True, help="трасса отвода по трубе, м")
+    sf.add_argument("--pipe-slope-pct", type=float, required=True)
+    sf.add_argument("--outlet-offset-mm", type=float, required=True, help="основание трапа → низ выпуска (паспорт)")
+    sf.add_argument("--drain-height-mm", type=float, required=True, help="основание трапа → решётка, мин. (паспорт)")
+    sf.add_argument("--shower-slope-m", type=float, required=True, help="трап → дальняя точка душа, м")
+    sf.add_argument("--shower-slope-pct", type=float, required=True)
+    sf.add_argument("--adjacent-floor-mm", type=float, default=0.0, help="чистовой пол смежного помещения над плитой, мм")
     ex = cs.add_parser("expr", help="любая формула (десятичная точка): + - * / ** (), ceil floor round sqrt min max abs pi")
     ex.add_argument("--expr", required=True, help='напр. "ceil(64*0.7*150/1000*10)/10"')
     pw = cs.add_parser("power", help="суммарная мощность и расчётный ток")

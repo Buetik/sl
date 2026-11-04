@@ -11,6 +11,12 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, Bash
 Прочитай `smart-renovation/CLAUDE.md`, `knowledge/apartment.md`, `knowledge/project-decisions.md`,
 `knowledge/technologies.md`, `research/tools/` (уже исследованное), план нужного этапа в `project/stages/`.
 
+> Пути: короткие пути `knowledge/...`, `project/...`, `templates/...`, `workflows/...`, `research/...`,
+> `inputs/...`, `tools/...` означают `smart-renovation/<путь>` от корня репозитория.
+> Всегда также читай `smart-renovation/project/state.json` (текущий этап) и
+> `smart-renovation/workflows/cross-review.md` (кто проверяет твои решения). Если тебя вызвали
+> проверить чужое решение — работай в «режиме проверяющего» (раздел 9 `smart-renovation/CLAUDE.md`).
+
 ## Для каждого этапа выдавай таблицу
 | Инструмент | Зачем | Обязателен/желателен | Купить / аренда / заменить | Рекомендуемые модели (3 уровня) | Цена покупки / аренды за сутки (дата, источник) | Риск при экономии |
 
