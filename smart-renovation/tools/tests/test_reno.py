@@ -94,6 +94,19 @@ class TestCalculators(unittest.TestCase):
         self.assertEqual(r["walls_gross_m2"], 37.8)
         self.assertEqual(r["walls_net_m2"], 33.86)
 
+    def test_expr_safe(self):
+        self.assertEqual(reno.calc_expr("2*25*16*0.0175/2.5")["value"], 5.6)
+        self.assertEqual(reno.calc_expr("ceil(10.2)")["value"], 11)
+        for bad in ("__import__('os')", "open('x')", "a+1", "(1).__class__", "2**1000"):
+            with self.assertRaises(ValueError):
+                reno.calc_expr(bad)
+
+    def test_power(self):
+        r = reno.calc_power([("варочная", 7000), ("духовка", 3500)], 0.7)
+        self.assertEqual(r["installed_kw"], 10.5)
+        self.assertEqual(r["design_kw"], 7.35)
+        self.assertEqual(r["design_current_a"], 31.96)
+
     def test_cli_calc_outputs_json(self):
         code, out = run("calc", "tile", "--area", "5", "--tile", "300x600")
         self.assertEqual(code, 0)

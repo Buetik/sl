@@ -40,5 +40,5 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, Bash
 ## Выход
 Отчёт по разделу 9 `smart-renovation/CLAUDE.md`, схемы разводки и спецификации в
 `smart-renovation/project/specifications/` (точки, трубы, фитинги, длины, высоты выводов с привязкой к
-чистовому полу). Обязательные проверки: construction-engineer (пол/гидроизоляция), electrical-engineer
+чистовому полу). Обязательные проверки (минимум; полный список — матрица `smart-renovation/workflows/cross-review.md`): construction-engineer (пол/гидроизоляция), electrical-engineer
 (зоны ванной, краны протечек), interior-designer (габариты), quality-controller (испытания).

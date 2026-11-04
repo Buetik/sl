@@ -130,7 +130,8 @@ python3 smart-renovation/tools/reno.py calc mix --area 20 --thickness-mm 15 --co
 ```
 
 Расчёты: `mix` (сухие смеси), `tile`, `paint`, `sheet` (ГКЛ), `linear` (погонаж), `slope` (уклоны),
-`voltage-drop`, `unit-price`, `room` (площади помещения). Тесты:
+`voltage-drop`, `unit-price`, `room` (площади помещения), `power` (нагрузки и расчётный ток),
+`expr` (любая формула, безопасное вычисление без eval). Тесты:
 
 ```bash
 python3 -m unittest discover -s smart-renovation/tools/tests -v

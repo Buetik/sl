@@ -422,6 +422,66 @@ def calc_unit_price(price, qty_per_pack):
     return {"price_per_unit": round(price / qty_per_pack, 2)}
 
 
+_ALLOWED_FUNCS = {"ceil": math.ceil, "floor": math.floor, "round": round, "sqrt": math.sqrt,
+                  "min": min, "max": max, "abs": abs, "pi": math.pi}
+
+
+def calc_expr(expr: str):
+    """Безопасное вычисление арифметической формулы (без eval): числа, + - * / // % **, скобки,
+    функции ceil, floor, round, sqrt, min, max, abs и константа pi."""
+    import ast
+    import operator as op
+    bin_ops = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul, ast.Div: op.truediv,
+               ast.FloorDiv: op.floordiv, ast.Mod: op.mod, ast.Pow: op.pow}
+    un_ops = {ast.USub: op.neg, ast.UAdd: op.pos}
+
+    def ev(node):
+        if isinstance(node, ast.Expression):
+            return ev(node.body)
+        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)) and not isinstance(node.value, bool):
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in bin_ops:
+            right = ev(node.right)
+            if isinstance(node.op, ast.Pow) and abs(right) > 100:
+                raise ValueError("слишком большая степень")
+            return bin_ops[type(node.op)](ev(node.left), right)
+        if isinstance(node, ast.UnaryOp) and type(node.op) in un_ops:
+            return un_ops[type(node.op)](ev(node.operand))
+        if isinstance(node, ast.Name) and node.id == "pi":
+            return math.pi
+        if (isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in _ALLOWED_FUNCS
+                and node.func.id != "pi" and not node.keywords):
+            return _ALLOWED_FUNCS[node.func.id](*[ev(a) for a in node.args])
+        raise ValueError(f"недопустимый элемент формулы: {ast.dump(node)[:60]}")
+
+    try:
+        tree = ast.parse(expr, mode="eval")  # десятичный разделитель — точка
+    except SyntaxError as e:
+        raise ValueError(f"ошибка синтаксиса формулы: {e.msg}") from None
+    value = ev(tree)
+    return {"value": round(value, 6) if isinstance(value, float) else value}
+
+
+def calc_power(loads, demand_factor=1.0, voltage=230.0):
+    """Сумма нагрузок (Вт) и расчётный ток однофазной сети с коэффициентом спроса."""
+    total = sum(w for _, w in loads)
+    design = total * demand_factor
+    return {"installed_kw": round(total / 1000, 3), "design_kw": round(design / 1000, 3),
+            "design_current_a": round(design / voltage, 2), "loads": [{"name": n, "w": w} for n, w in loads]}
+
+
+def parse_loads(s: str):
+    out = []
+    for part in s.split(","):
+        if not part.strip():
+            continue
+        name, _, w = part.rpartition(":")
+        if not name or not w:
+            raise ValueError(f"нагрузка должна быть в виде имя:Вт, получено {part!r}")
+        out.append((name.strip(), float(w)))
+    return out
+
+
 def parse_dims(s: str):
     m = re.fullmatch(r"\s*([\d.,]+)\s*[xх×*]\s*([\d.,]+)\s*", s)
     if not m:
@@ -459,6 +519,10 @@ def cmd_calc(args) -> int:
         r = calc_voltage_drop(args.length, args.current, args.section, args.voltage, args.material, args.cos_phi)
     elif k == "unit-price":
         r = calc_unit_price(args.price, args.qty_per_pack)
+    elif k == "expr":
+        r = calc_expr(args.expr)
+    elif k == "power":
+        r = calc_power(parse_loads(args.loads), args.demand, args.voltage)
     elif k == "room":
         ops = [parse_dims(o) for o in args.openings.split(",")] if args.openings else []
         r = calc_room(args.length, args.width, args.height, ops)
@@ -544,6 +608,12 @@ def build_parser() -> argparse.ArgumentParser:
     ro.add_argument("--width", type=float, required=True)
     ro.add_argument("--height", type=float, required=True)
     ro.add_argument("--openings", help="проёмы в метрах через запятую, напр. 0.9x2.05,1.5x1.4")
+    ex = cs.add_parser("expr", help="любая формула (десятичная точка): + - * / ** (), ceil floor round sqrt min max abs pi")
+    ex.add_argument("--expr", required=True, help='напр. "ceil(64*0.7*150/1000*10)/10"')
+    pw = cs.add_parser("power", help="суммарная мощность и расчётный ток")
+    pw.add_argument("--loads", required=True, help='имя:Вт через запятую, напр. "варочная:7000,духовка:3500"')
+    pw.add_argument("--demand", type=float, default=1.0, help="коэффициент спроса (обосновать источником)")
+    pw.add_argument("--voltage", type=float, default=230.0)
     c.set_defaults(func=cmd_calc)
     return ap
 

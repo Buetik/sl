@@ -48,5 +48,5 @@ tools: Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, Bash
 ## Выход
 Отчёт по разделу 9 `smart-renovation/CLAUDE.md`, спецификации в `smart-renovation/project/specifications/`.
 По тёплому полу — всегда сравнительная таблица (законность, стоимость, эксплуатация, толщина пирога,
-риски). Обязательные проверки: electrical-engineer (питание), construction-engineer (пирог пола),
+риски). Обязательные проверки (минимум; полный список — матрица `smart-renovation/workflows/cross-review.md`): electrical-engineer (питание), construction-engineer (пирог пола),
 interior-designer (расположение), financial-controller.
