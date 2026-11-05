@@ -144,7 +144,7 @@ def decisions_summary() -> dict:
     counts: dict = {}
     if not path.exists():
         return counts
-    for m in re.finditer(r"\*\*Статус:\*\*\s*([А-ЯЁA-Z ]+?)\s*(?:\n|$|\|)", path.read_text(encoding="utf-8")):
+    for m in re.finditer(r"\*\*Статус:\*\*\s*([А-ЯЁ]+(?: [А-ЯЁ]+)?)", path.read_text(encoding="utf-8")):
         key = m.group(1).strip()
         counts[key] = counts.get(key, 0) + 1
     return counts

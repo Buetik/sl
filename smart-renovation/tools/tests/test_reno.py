@@ -195,6 +195,12 @@ class TestStageGates(Sandbox):
         self.assertTrue(any("цикл" in e for e in errs))
         self.assertTrue(any("99" in e for e in errs))
 
+    def test_decision_status_with_note(self):
+        (self.tmp / "knowledge/project-decisions.md").write_text(
+            "- **Статус:** ПРИНЯТО (2026-11-05, принимаю)\n- **Статус:** НА СОГЛАСОВАНИИ (условия)\n- **Статус:** ПРЕДЛОЖЕНО\n",
+            encoding="utf-8")
+        self.assertEqual(reno.decisions_summary(), {"ПРИНЯТО": 1, "НА СОГЛАСОВАНИИ": 1, "ПРЕДЛОЖЕНО": 1})
+
     def test_next_lists_tasks(self):
         code, out = run("next")
         self.assertEqual(code, 0)
